@@ -1,4 +1,32 @@
 # ------------------------------------------------------------------------------
+# Packages
+# ------------------------------------------------------------------------------
+get_suggested <- function(pkg, fun = NULL) {
+  base_pkgs <- c("base", "utils", "stats", "graphics", "grDevices", "methods", "datasets")
+
+  # Always pass base packages
+  if (pkg %in% base_pkgs) {
+    return(if (is.null(fun)) invisible(TRUE) else get(fun, envir = asNamespace(pkg)))
+  }
+
+  # Ensure package is available
+  if (!requireNamespace(pkg, quietly = TRUE)) {
+    warning(sprintf(
+      "The '%s' package is required for this functionality. Please install it or move it to Imports.",
+      pkg
+    ), call. = FALSE)
+  }
+
+  # Return function if requested, or TRUE
+  if (!is.null(fun)) {
+    return(get(fun, envir = asNamespace(pkg)))
+  }
+
+  invisible(TRUE)
+}
+
+
+# ------------------------------------------------------------------------------
 #' Build a Document Summarizer Agent
 #'
 #' Creates an LLM-powered document summarization workflow that processes PDF, DOCX,
@@ -20,19 +48,18 @@
 #'
 #' @examples
 #' \dontrun{
-#' # With default settings
-#' summarizer <- build_doc_summarizer_agent(llm = call_llm)
-#'
-#' # With custom template
-#' custom_template <- "Summarize this in 3 bullet points:\n{text}"
-#' summarizer <- build_doc_summarizer_agent(
-#'   llm = call_llm,
-#'   summary_template = custom_template
+#' # Build document summarizer agent
+#' summarizer_agent <- build_doc_summarizer_agent(
+#'   llm = my_llm_wrapper,
+#'   summary_template = NULL,
+#'   chunk_size = 4000,
+#'   overlap = 200,
+#'   verbose = FALSE
 #' )
 #'
-#' # Process a document
-#' result <- summarizer("report.docx")
-#' cat(result$summary)
+#' # Summarize document
+#' final_state <- summarizer_agent("https://github.com/knowusuboaky/LLMAgentR/raw/main/\
+#' tests/testthat/test-data/scrum.docx")
 #' }
 #' @export
 build_doc_summarizer_agent <- function(
@@ -53,7 +80,8 @@ build_doc_summarizer_agent <- function(
   dplyr     <- get_suggested("dplyr")
   xml2      <- get_suggested("xml2")
   rvest     <- get_suggested("rvest")
-  tesseract <- get_suggested("tesseract")
+
+  #tesseract <- get_suggested("tesseract")
 
   # OCR fallback for scanned PDFs
   read_pdf_ocr <- function(file) {
@@ -110,6 +138,11 @@ build_doc_summarizer_agent <- function(
         txt_vec <- pdftools::pdf_text(file_path)
         if (all(nchar(txt_vec) == 0)) {
           message("No text layer-running OCR fallback.")
+
+        # only run OCR if tesseract is available
+          if (!requireNamespace("tesseract", quietly = TRUE)) {
+            stop("Install the 'tesseract' package to enable OCR for scanned PDFs.")
+            }
           txt_vec <- read_pdf_ocr(file_path)
         }
         content <- gsub("\n\n+", "\n", paste(txt_vec, collapse = "\n"))
@@ -312,3 +345,4 @@ build_doc_summarizer_agent <- function(
     })
   }
 }
+

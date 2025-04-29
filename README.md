@@ -1,9 +1,10 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# LLMAgentR <a href="https://knowusuboaky.github.io/LLMAgentR"><img src="man/figures/llmaopenlogo.png" align="right" height="120" /></a>
+# LLMAgentR <a href="https://knowusuboaky.github.io/LLMAgentR/"><img src="man/figures/llmaopenlogo.png" align="right" height="120" /></a>
 
 <!-- badges: start -->
+
 [![License:
 MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![CRAN
@@ -45,7 +46,7 @@ remotes::install_github("knowusuboaky/LLMAgentR")
 ```
 
 See the full [function
-reference](https://knowusuboaky.github.io/LLMAgentR/reference) or the
+reference](https://knowusuboaky.github.io/LLMAgentR/reference/) or the
 [package website](https://knowusuboaky.github.io/LLMAgentR/) for more
 details.
 
@@ -662,6 +663,34 @@ final_state$forecasting_result
 #>```
 ```
 
+#### Forecast Plot: Light Mode
+
+<!--html_preserve-->
+<iframe src="assets/forecast_light_plot.html" style="
+  width:100%;
+  height:300px;
+  /* solid black 2-px border */
+  border:2px solid #000;
+  /* rounded corners */
+  border-radius:4px;
+">
+</iframe>
+<!--/html_preserve-->
+
+#### Forecast Plot: Dark Mode
+
+<!--html_preserve-->
+<iframe src="assets/forecast_dark_plot.html" style="
+  width:100%;
+  height:300px;
+  /* solid black 2-px border */
+  border:2px solid #000;
+  /* rounded corners */
+  border-radius:4px;
+">
+</iframe>
+<!--/html_preserve-->
+
 ### 8. Data Wrangling Agent
 
 ``` r
@@ -1005,6 +1034,20 @@ final_state$visualization_result
 Saves the interactive plot as a standalone HTML file: "monthly_charges_vs_churn.html"
 #> ```
 ```
+
+#### Box Plot
+
+<!--html_preserve-->
+<iframe src="assets/monthly_charges_vs_churn.html" style="
+  width:100%;
+  height:300px;
+  /* solid black 2-px border */
+  border:2px solid #000;
+  /* rounded corners */
+  border-radius:4px;
+">
+</iframe>
+<!--/html_preserve-->
 
 ## License
 
