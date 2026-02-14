@@ -1,7 +1,7 @@
 Package: LLMAgentR
 Type: Package
 Title: Language Model Agents in R for AI Workflows and Research
-Version: 0.3.0
+Version: 0.3.2
 Authors@R: person(given = "Kwadwo Daddy Nyame",
                   family = "Owusu Boakye",
                   email = "kwadwo.owusuboakye@outlook.com",
@@ -22,12 +22,12 @@ Depends: R (>= 4.1.0)
 Imports: plotly, stats, utils, DBI, RSQLite, dplyr, glue, httr,
         officer, purrr, timetk, pdftools, parsnip, recipes, workflows,
         rsample, modeltime.ensemble, modeltime, xml2
-Suggests: testthat (>= 3.0.0), roxygen2, jsonlite, magrittr, rlang,
-        tidyr, ggplot2, usethis, prophet, forcats, kernlab, xgboost,
-        xfun, modeltime.resample, tidymodels, tibble, lubridate,
-        methods, tesseract, rvest, fastDummies, stringr
+Suggests: testthat (>= 3.0.0), roxygen2, knitr, rmarkdown, jsonlite,
+        magrittr, rlang, tidyr, ggplot2, usethis, prophet, forcats,
+        kernlab, xgboost, xfun, modeltime.resample, tidymodels, tibble,
+        lubridate, methods, tesseract, rvest, fastDummies, stringr
 NeedsCompilation: no
-Packaged: 2025-05-20 20:05:52 UTC; kwadw
+Packaged: 2026-02-14 19:48:20 UTC; kwadw
 Author: Kwadwo Daddy Nyame Owusu Boakye [aut, cre]
 Repository: CRAN
-Date/Publication: 2025-05-20 20:20:02 UTC
+Date/Publication: 2026-02-14 20:30:02 UTC
